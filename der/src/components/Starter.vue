@@ -1,27 +1,59 @@
 <template>
-    <v-layout row justify-center align-center text-xs-center>
-        <!--<v-flex xs12>-->
-        <v-card dark class="mt-5 pa-3 fadeIn" style="max-width: 950px; height: 460px; font-weight: 600;">
-            <div class="pa-5">
-                <p class="display-2" style="font-weight: 600;" v-html="$lang.value.title"></p>
-                <p class="display-2" style="font-weight: 600;">{{$lang.value.grade}}</p>
-            </div>
-            <v-btn class="ma-0" color="warning" light style="width:100%; min-height:100px;" @click="start">
-                <span class="display-2" style="font-weight: 700;">{{$lang.string.start}}</span>
+    <div class="bg" :style="{backgroundImage: `url(${loaded ? 'assets/starter/bg1.jpg' : 'assets/starter/bg0.jpg'})`}">
+
+        <template v-if="loaded">
+            <label style="position: absolute;left: 460px;top: 400px; font-family: AppFont900;"
+                   class="display-1 cyan--text"
+                   v-html="$lang.value.subject"></label>
+            <label style="position: absolute;left: 460px;top: 440px;font-family: AppFont900;"
+                   class="headline">{{$lang.value.grade}}</label>
+
+
+            <label style="position: absolute;left: 460px;top: 520px;font-family: AppFont900; max-width:680px;"
+                   class="display-1">
+                <span>{{title}}</span><span
+                    :class="[$lang.value.title.length === title.length ? 'cursor-anim' : '']">_</span>
+            </label>
+
+
+            <v-btn style="position: absolute;left: 1000px;top: 620px; "
+                   dark large color="cyan"
+                   @click="start">
+                <v-icon large>play_arrow</v-icon>
             </v-btn>
-           <div class="mt-4">
-               <span class="grey--text">&copy; {{$lang.string.copyright}}</span>
-               <a style="text-decoration: none;" class="light-blue--text" href="http://play.nis.edu.kz" target="_blank">play.nis.edu.kz</a>
-           </div>
-        </v-card>
-        <!--</v-flex>-->
-    </v-layout>
+        </template>
+
+        <h2 class="grey--text text--darken-2"
+            style="position: absolute;bottom: 30px;left: 0;width: 100%;text-align: center;">&copy;
+            {{$lang.value.copyright}}</h2>
+
+    </div>
 </template>
 
 <script>
     export default {
         data() {
-            return {}
+            return {
+                loaded: false,
+                interval: {},
+                title: ''
+            }
+        },
+        mounted() {
+            let self = this
+            setTimeout(() => {
+                self.loaded = true;
+                let length = 0;
+                self.interval = setInterval(() => {
+                    if (length === self.$lang.value.title.length) {
+                        return;
+                    }
+                    self.title += self.$lang.value.title[length++]
+                }, 60)
+            }, 1000)
+        },
+        beforeDestroy() {
+            clearInterval(this.interval)
         },
         methods: {
             start() {
@@ -30,3 +62,18 @@
         }
     }
 </script>
+
+<style>
+    .cursor-anim {
+        animation: anim-cursor 1.5s infinite;
+    }
+
+    @keyframes anim-cursor {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+</style>

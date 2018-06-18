@@ -37,18 +37,18 @@
                         <v-btn :disabled="position===0"
                                @click="prev()" large class="grey darken-2 ma-0"
                                style="font-weight: 900; width:100%;">
-                            <span style="text-align: left; width:100%;">{{$lang.string.back}}</span>
+                            <span style="text-align: left; width:100%;">{{$lang.value.back}}</span>
                         </v-btn>
                     </v-flex>
                     <v-flex xs6 class="pa-1">
                         <v-btn v-if="position < items.data.length - 1" @click="next()"
                                large class="grey darken-2 ma-0" style="font-weight: 900; width:100%;">
-                            <span style="text-align: right; width:100%;">{{$lang.string.next}}</span>
+                            <span style="text-align: right; width:100%;">{{$lang.value.next}}</span>
                         </v-btn>
                         <v-btn v-else @click="exit()"
                                color="success"
                                large class="ma-0" style="font-weight: 900; width:100%;">
-                            <span style="text-align: right; width:100%;">{{$lang.string.finalize}}</span>
+                            <span style="text-align: right; width:100%;">{{$lang.value.finalize}}</span>
                         </v-btn>
                     </v-flex>
                 </v-layout>

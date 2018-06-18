@@ -1,39 +1,35 @@
 <template>
     <v-app>
         <div class="screen">
-            <v-toolbar flat class="transparent">
-                <v-toolbar-items class="ma-0" v-if="$route.name!=='main' && $route.name!=='start'">
-                    <v-btn dark color="grey darken-3" @click.native="$router.push({name: 'main'})">
-                        <v-icon>arrow_back</v-icon>
+            <div class="app-menu">
+                <v-btn :style="{visibility: $route.name!=='main' && $route.name!=='start' && $route.name!=='intro' ? 'visible': 'hidden'}"
+                       fab large dark color="grey darken-3"
+                       @click.native="$router.push({name: 'main'})">
+                    <v-icon>home</v-icon>
+                </v-btn>
+                <v-btn fab large dark color="grey darken-4"
+                       @click.native="onSwitchSound()">
+                    <v-icon color="grey darken-3">{{soundEffects ? 'volume_up' : 'volume_off'}}</v-icon>
+                </v-btn>
+                <v-menu offset-y>
+                    <v-btn slot="activator"
+                           fab large dark color="grey darken-4">
+                        <span class="grey--text text--darken-3"
+                              style="font-family: AppFont700 !important; font-size: 1.8em;"> {{currentLangName.title}}</span>
                     </v-btn>
-                </v-toolbar-items>
-                <v-toolbar-items class="ma-0" v-else>
-                    <v-btn disabled flat></v-btn>
-                </v-toolbar-items>
+                    <v-list dark>
+                        <v-list-tile v-for="(item,index) in languages" :key="index" @click="onClickLang(index)">
+                            <v-list-tile-title
+                                    style="height:50px; display: flex; justify-content: center; align-items: center">
+                                <span class="grey--text text--darken-1" style="font-size: 1.4em;">
+                                    {{ item.title }}
+                                </span>
+                            </v-list-tile-title>
+                        </v-list-tile>
+                    </v-list>
+                </v-menu>
+            </div>
 
-                <v-toolbar-items>
-                    <v-btn color="grey darken-3" dark @click.native="onSwitchSound()">
-                        <v-icon>{{soundEffects ? 'volume_up' : 'volume_off'}}</v-icon>
-                    </v-btn>
-                </v-toolbar-items>
-                <v-toolbar-items>
-                    <v-menu offset-y>
-                        <v-btn color="grey darken-3" dark app slot="activator">
-                            <!--{{currentLangName.title}}-->
-                            <img :src="currentLangName.image" width="40px" alt="">
-                        </v-btn>
-                        <v-list>
-                            <v-list-tile v-for="(item,index) in languages" :key="index" @click="onClickLang(index)">
-                                <v-list-tile-title
-                                        style="height:30px; display: flex; justify-content: center; align-items: center">
-                                    <!--{{ item.title }}-->
-                                    <img :src="item.image" style="height:100%;" alt="">
-                                </v-list-tile-title>
-                            </v-list-tile>
-                        </v-list>
-                    </v-menu>
-                </v-toolbar-items>
-            </v-toolbar>
             <v-content>
                 <transition name="fade">
                     <router-view/>
@@ -50,15 +46,12 @@
             music: null,
             languages: {
                 kz: {
-                    image: 'assets/flags/034-kazakhstan.png',
                     title: 'ҚАЗ'
                 },
                 ru: {
-                    image: 'assets/flags/228-russia.png',
                     title: 'РУС'
                 },
                 en: {
-                    image: 'assets/flags/153-united-states-of-america.png',
                     title: 'ENG'
                 }
             },
@@ -99,8 +92,7 @@
             this.music.volume = 0.6;
             this.music.src = 'assets/sound/bg.mp3';
             this.music.loop = true;
-            this.soundEffects = this.$store.state.soundEffects
-            if (this.soundEffects) this.music.play();
+            this.soundEffects = false// this.$store.state.soundEffects
         },
         beforeDestroy() {
             if (this.music.played) this.music.pause()
@@ -122,22 +114,37 @@
     }
 
     #app {
+        font-family: AppFont500;
         background-color: transparent !important;
     }
 
-    .btn {
-        border-radius: 0;
-    }
-
     .screen {
-        border: 1px dashed black;
         position: relative;
-        width: 1440px;
-        height: 900px;
+        width: 1600px;
+        height: 1200px;
     }
 
     .progress-linear {
         border: 8px solid #424242;
+    }
+
+    .bg {
+        position: relative;
+        width: 1600px;
+        height: 1200px;
+        background-repeat: no-repeat;
+        background-size: 1600px 1200px;
+        background-position: center;
+    }
+
+    .app-menu {
+        position: absolute;
+        left: 90px;
+        top: 90px;
+        z-index: 2;
+    }
+    .app-menu .btn{
+        box-shadow: 0px 0px 15px white;
     }
 
 </style>

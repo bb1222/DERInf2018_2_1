@@ -20,10 +20,10 @@ Vue.use(VueLocalization);
 import store from './store'
 import Lang from './Lang.vue'
 import Main from './components/Main'
-import HelloWorld from './components/HelloWorld'
 import Game from './components/Game.vue'
 import Result from './components/DialogResult.vue'
 import Starter from './components/Starter.vue'
+import Intro from './components/Intro.vue'
 
 require('vue2-animate/dist/vue2-animate.css')
 
@@ -41,14 +41,11 @@ const router = new VueRouter({
             path: '/:lang', component: Lang,
             children: [
                 {path: '', name: 'main', component: Main},
-                {path: 'components', component: HelloWorld},
                 {path: 'start', name: 'start', component: Starter},
+                {path: 'intro', name: 'intro', component: Intro},
                 {
                     path: 'game/:gameId', name: 'game', component: Game,
                 },
-                // {
-                //   path: 'game/:gameId', name: 'game', component: Game,
-                // },
                 {path: 'res', name: 'res', component: Result}
             ]
         },
@@ -64,9 +61,9 @@ new Vue({
     template: '<App/>'
 })
 
-document.onselectstart = noselect;
-document.oncontextmenu = noselect;
-
-function noselect() {
-    return false;
-};
+// document.onselectstart = noselect;
+// document.oncontextmenu = noselect;
+//
+// function noselect() {
+//     return false;
+// };

@@ -22,7 +22,9 @@
 
         <div style="margin-top:130px;">
             <v-layout row wrap justify-center v-if="currentVariants">
-                <v-btn v-for="item in currentVariants" dark
+                <v-btn v-for="(item, key) in currentVariants"
+                       :key="key"
+                       dark
                        style="min-height:60px;"
                        color="grey darken-2"
                        :disabled="checked"
@@ -40,10 +42,9 @@
                    :disabled="Object.keys(answers).length != count || checked"
                    @click="check">
                 <span style="font-weight: 500;" class="headline">
-                    {{$lang.string.check}}</span>
+                    {{$lang.value.check}}</span>
             </v-btn>
         </div>
-
 
         <v-btn dark
                class="ma-5"
@@ -61,7 +62,7 @@
                v-if="checked"
                @click="finishGame">
             <v-icon large>arrow_forward</v-icon>
-            <!--<span style="font-weight: 500;" class="headline">{{$lang.string.next}}</span>-->
+            <!--<span style="font-weight: 500;" class="headline">{{$lang.value.next}}</span>-->
         </v-btn>
 
     </div>

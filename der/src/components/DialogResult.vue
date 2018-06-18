@@ -27,7 +27,7 @@
                                @click.native="click('home')">
                             <v-icon large>home</v-icon>
                         </v-btn>
-                        <span>{{$lang.string.home}}</span>
+                        <span>{{$lang.value.home}}</span>
                     </v-tooltip>
                     <v-tooltip bottom>
                         <v-btn icon large dark class="ml-4"
@@ -35,7 +35,7 @@
                                @click.native="click('repeat')">
                             <v-icon large>cached</v-icon>
                         </v-btn>
-                        <span>{{$lang.string.repeat}}</span>
+                        <span>{{$lang.value.repeat}}</span>
                     </v-tooltip>
                     <v-tooltip bottom>
                         <v-btn v-if="showNext" icon large dark class="ml-4"
@@ -43,14 +43,14 @@
                                @click.native="click('next')">
                             <v-icon large>arrow_forward</v-icon>
                         </v-btn>
-                        <span>{{$lang.string.next}}</span>
+                        <span>{{$lang.value.next}}</span>
                     </v-tooltip>
                     <!--<v-layout column align-center>-->
-                    <!--<v-btn flat large primary @click.native="click('home')">{{$lang.string.home}}</v-btn>-->
+                    <!--<v-btn flat large primary @click.native="click('home')">{{$lang.value.home}}</v-btn>-->
                     <!--<v-icon x-large>arrow_forward</v-icon>-->
                     <!--</v-layout>-->
-                    <!--<v-btn flat large primary @click.native="click('repeat')">{{$lang.string.repeat}}</v-btn>-->
-                    <!--<v-btn flat large success @click.native="click('next')">{{$lang.string.next}}</v-btn>-->
+                    <!--<v-btn flat large primary @click.native="click('repeat')">{{$lang.value.repeat}}</v-btn>-->
+                    <!--<v-btn flat large success @click.native="click('next')">{{$lang.value.next}}</v-btn>-->
                 </v-card>
 
             </v-card>
@@ -88,7 +88,7 @@
         },
         computed: {
             resWord() {
-                let resWords = this.$lang.string.resWords;
+                let resWords = this.$lang.value.resWords;
                 let result = this.$route.params.result;
                 var colStar = (result === 100) ? 3 : parseInt(result / 25);
                 var rand = Math.floor(Math.random() * resWords[colStar].length);
