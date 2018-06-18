@@ -2,10 +2,12 @@
     <div class="bg" :style="{backgroundImage: `url(${loaded ? 'assets/starter/bg1.jpg' : 'assets/starter/bg0.jpg'})`}">
 
         <template v-if="loaded">
-            <label style="position: absolute;left: 460px;top: 400px; font-family: AppFont900;"
+            <label v-apparate:fadeIn="{delay:0}"
+                   style="position: absolute;left: 460px;top: 400px; font-family: AppFont900;"
                    class="display-1 cyan--text"
                    v-html="$lang.value.subject"></label>
-            <label style="position: absolute;left: 460px;top: 440px;font-family: AppFont900;"
+            <label v-apparate:fadeIn="{delay:0}"
+                   style="position: absolute;left: 460px;top: 440px;font-family: AppFont900;"
                    class="headline">{{$lang.value.grade}}</label>
 
 
@@ -18,6 +20,8 @@
 
             <v-btn style="position: absolute;left: 1000px;top: 620px; "
                    dark large color="cyan"
+                   v-apparate:fadeInUp="{delay:0}"
+                   v-show="$lang.value.title.length === title.length"
                    @click="start">
                 <v-icon large>play_arrow</v-icon>
             </v-btn>
@@ -57,7 +61,7 @@
         },
         methods: {
             start() {
-                this.$router.push({name: 'main'})
+                this.$router.push({name: 'intro'})
             }
         }
     }

@@ -1,12 +1,10 @@
 <template>
     <div class="bg" style="background-image: url('assets/intro/bg1_blur.jpg');">
-
-
-        <div class="phone" v-apparate:fadeInDown="{delay:0}">
+        <div class="phone" v-apparate:bounceInUp="{delay:0}">
             <img src="assets/intro/phone.png" alt="">
             <label style="position: absolute;left: 460px;top: 520px;font-family: AppFont500; max-width:680px;"
                    class="display-1">
-                <span class="cursor-anim">|</span>
+                <!--<span class="cursor-anim">|</span>-->
             </label>
         </div>
     </div>

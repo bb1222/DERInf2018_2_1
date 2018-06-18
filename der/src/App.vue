@@ -3,9 +3,9 @@
         <div class="screen">
             <div class="app-menu">
                 <v-btn :style="{visibility: $route.name!=='main' && $route.name!=='start' && $route.name!=='intro' ? 'visible': 'hidden'}"
-                       fab large dark color="grey darken-3"
+                       fab large dark color="grey darken-4"
                        @click.native="$router.push({name: 'main'})">
-                    <v-icon>home</v-icon>
+                    <v-icon color="grey darken-3">home</v-icon>
                 </v-btn>
                 <v-btn fab large dark color="grey darken-4"
                        @click.native="onSwitchSound()">
@@ -143,8 +143,16 @@
         top: 90px;
         z-index: 2;
     }
-    .app-menu .btn{
+
+    .app-menu .btn:hover {
         box-shadow: 0px 0px 15px white;
+        transition: none;
     }
+
+    .app-menu .btn:hover i,
+    .app-menu .btn:hover span {
+        color: white !important;
+    }
+
 
 </style>

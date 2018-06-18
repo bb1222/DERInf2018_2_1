@@ -27,13 +27,11 @@ import Intro from './components/Intro.vue'
 
 require('vue2-animate/dist/vue2-animate.css')
 
-import VueProgressiveImage from 'vue-progressive-image'
-
-Vue.use(VueProgressiveImage)
-
 import LoadingImage from './components/model/LoadingImage.vue'
-
 Vue.component('loading-image', LoadingImage);
+
+require('vue-apparate');
+VueApparate.init(Vue);
 
 const router = new VueRouter({
     routes: [
