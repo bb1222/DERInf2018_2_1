@@ -9,6 +9,7 @@ Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 import VueRouter from 'vue-router'
+
 Vue.use(VueRouter)
 
 import VueLocalization from 'vuejs-localization'
@@ -27,9 +28,11 @@ import Starter from './components/Starter.vue'
 require('vue2-animate/dist/vue2-animate.css')
 
 import VueProgressiveImage from 'vue-progressive-image'
+
 Vue.use(VueProgressiveImage)
 
 import LoadingImage from './components/model/LoadingImage.vue'
+
 Vue.component('loading-image', LoadingImage);
 
 const router = new VueRouter({
@@ -39,7 +42,7 @@ const router = new VueRouter({
             children: [
                 {path: '', name: 'main', component: Main},
                 {path: 'components', component: HelloWorld},
-                {path: 'start', name: 'start',component: Starter},
+                {path: 'start', name: 'start', component: Starter},
                 {
                     path: 'game/:gameId', name: 'game', component: Game,
                 },
@@ -61,9 +64,9 @@ new Vue({
     template: '<App/>'
 })
 
+document.onselectstart = noselect;
+document.oncontextmenu = noselect;
 
-// document.onselectstart = noselect;
-// document.oncontextmenu = noselect;
-// function noselect() {
-// 	return false;
-// };
+function noselect() {
+    return false;
+};
