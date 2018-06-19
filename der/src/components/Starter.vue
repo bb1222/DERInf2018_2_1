@@ -48,6 +48,7 @@
             setTimeout(() => {
                 self.loaded = true;
                 let length = 0;
+                self.title = ''
                 self.interval = setInterval(() => {
                     if (length === self.$lang.value.title.length) {
                         return;

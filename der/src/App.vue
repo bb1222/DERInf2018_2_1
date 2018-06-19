@@ -154,5 +154,18 @@
         color: white !important;
     }
 
+    .button-anim {
+        animation: anim-button 1.5s infinite linear;
+    }
 
+    @keyframes anim-button {
+        from {
+            opacity: 1;
+            /*transform: scale(1);*/
+        }
+        to {
+            opacity: 0.4;
+            /*transform: scale(0.8);*/
+        }
+    }
 </style>
