@@ -1,5 +1,6 @@
 <template>
-    <div class="bg" style="position: absolute;left: 0;top: 0; background-image: url('assets/bg1.jpg');">
+    <div :style="{backgroundImage: `url('${items.bg}')`}"
+         class="bg" style="position: absolute;left: 0;top: 0;">
         <div style="position: relative;">
             <p id="counter">{{position + 1}}<sup>
                 <small>/{{items.count}}</small>

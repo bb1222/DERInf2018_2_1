@@ -1,23 +1,34 @@
 <template>
-    <div class="pb-5 mb-5">
-        <v-layout row wrap>
-            <v-flex xs3 md4 offset-md1 lg3 offset-lg2 xl2 offset-xl3>
-                <div style="height:100px" v-for="element in items.sorts">
-                    <h5 style="height:80%" class="mt-1 pa-3 font700 grey lighten-3">{{element}}</h5>
-                </div>
-            </v-flex>
-            <v-flex xs9 md6 lg5 xl4>
-                <draggable v-model="values" :options="{group:'sort'}" @start="drag=true" @end="drag=false">
-                    <div style="height:100px" v-for="(element,index) in values">
-                        <v-card :class="[element == items.values[index] && clicked?'success':'primary']"
-                                class="white--text elevation-8 title mr-5 mt-1 primary"
-                                style="box-sizing: border-box; padding:10px; min-height:80px;">
-                            {{element}}
-                        </v-card>
-                    </div>
-                </draggable>
-            </v-flex>
-        </v-layout>
+    <!--<div :style="{backgroundImage: `url('${items.bg}')`}"-->
+    <div :style="{backgroundImage: `url('assets/sort/bg1.jpg')`}"
+         ref="background"
+         class="bg" style="position: absolute;left: 0;top: 0;">
+        <div style="position: absolute; top:320px; left:250px; width:1100px;">
+            <h1 class="amber pa-3 font900 mb-3">
+                {{items.task}}
+            </h1>
+            <v-layout row>
+                <v-flex xs3>
+                    <h1 style="height:100px; line-height: 1.3em;" class="font900 pa-3 mt-2 mb-2 blue-grey lighten-4"
+                        v-for="element in items.sorts">
+                        {{element}}
+                    </h1>
+                </v-flex>
+                <v-flex xs9>
+                    <draggable v-model="values" :options="{group:'sort'}" @start="drag=true" @end="drag=false">
+                        <div style="height:100px" class="mt-2 mb-2 blue-grey lighten-4 pa-2"
+                             v-for="(element,index) in values">
+                            <v-card flat
+                                    class="font900 headline blue-grey lighten-3"
+                                    style="box-sizing: border-box; padding:10px; min-height:80px;">
+                                {{element}}
+                                <!--:class="[element == items.values[index] && clicked?'success':'primary']"-->
+                            </v-card>
+                        </div>
+                    </draggable>
+                </v-flex>
+            </v-layout>
+        </div>
     </div>
 </template>
 
@@ -26,6 +37,9 @@
 
     export default {
         props: ['items'],
+        components: {
+            draggable
+        },
         data() {
             return {
                 values: [],
@@ -37,13 +51,19 @@
         watch: {
             values(val) {
                 if (this.clicked && this.compareArray(val, this.items.values)) {
-                    let res = 100 + 20 - this.attempt * 10;
-                    res=(res>100)?100:res;
-                    res=(res<0)?0:res;
-                    this.$router.push({
-                        name: 'res',
-                        params: {result: res, resId: this.$route.params.gameId}
-                    });
+                    this.$refs.background.style.backgroundImage = 'url("assets/sort/bg3.jpg")'
+                    let gameOver = () => {
+                        let res = 100 + 20 - this.attempt * 10;
+                        res = (res > 100) ? 100 : res;
+                        res = (res < 0) ? 0 : res;
+                        this.$router.push({
+                            name: 'res',
+                            params: {result: res, resId: this.$route.params.gameId}
+                        });
+                    }
+                    setTimeout(function () {
+                        gameOver()
+                    }, 2000)
                 }
                 if (this.clicked) {
                     this.attempt++;
@@ -67,9 +87,6 @@
                 }
                 return true;
             }
-        },
-        components: {
-            draggable
-        },
+        }
     }
 </script>
