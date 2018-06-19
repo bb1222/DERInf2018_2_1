@@ -65,26 +65,7 @@
                 interval: {},
                 disableSender: true,
                 finished: false,
-                inputText: '',
-                items: {
-                    chat: [
-                        {
-                            text: 'Папа! Почему мой ноутбук перестал работать?'
-                        },
-                        {
-                            isPartner: true,
-                            text: 'Кнопку Reset нажимал? «Батарею» проверял?'
-                        },
-                        {
-                            text: 'Я не «чайник» и не «лузер». Как работать я обучен! Мне послание пришло.'
-                        },
-                        {
-                            isPartner: true,
-                            text: 'Давай вместе почитаем и причину мы узнаем!'
-                        },
-                    ],
-                    printing: 'Печатает...'
-                }
+                inputText: ''
             }
         },
         mounted() {
@@ -98,13 +79,16 @@
             clearInterval(this.interval)
         },
         computed: {
+            items(){
+              return this.$lang.value.intro
+            },
             disableButton() {
                 return this.inputText === '' || this.disableSender
             }
         },
         methods: {
             next() {
-                this.$router.push({name: 'main'})
+                this.$router.push(this.items.route)
             },
             startInputText() {
                 if (this.position >= this.items.chat.length) {

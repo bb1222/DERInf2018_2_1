@@ -161,11 +161,22 @@
     @keyframes anim-button {
         from {
             opacity: 1;
-            /*transform: scale(1);*/
         }
         to {
             opacity: 0.4;
-            /*transform: scale(0.8);*/
+        }
+    }
+
+    .cursor-anim {
+        animation: anim-cursor 1.5s infinite;
+    }
+
+    @keyframes anim-cursor {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
         }
     }
 </style>

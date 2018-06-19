@@ -5,13 +5,15 @@
 </template>
 
 <script>
-    import Slider from './games/Slider.vue'
-    import FillText from './games/FillText.vue'
+    // import Slider from './games/Slider.vue'
+    // import FillText from './games/FillText.vue'
+    import Test from './games/Test.vue'
+    import Sort from './games/Sortable.vue'
 
     export default {
         components: {
-            Slider,
-            FillText
+            Test,
+            Sort
         },
         data() {
             return {}

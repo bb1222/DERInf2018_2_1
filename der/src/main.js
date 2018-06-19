@@ -24,10 +24,12 @@ import Game from './components/Game.vue'
 import Result from './components/DialogResult.vue'
 import Starter from './components/Starter.vue'
 import Intro from './components/Intro.vue'
+import VideoText from './components/VideoText.vue'
 
 require('vue2-animate/dist/vue2-animate.css')
 
 import LoadingImage from './components/model/LoadingImage.vue'
+
 Vue.component('loading-image', LoadingImage);
 
 require('vue-apparate');
@@ -41,6 +43,7 @@ const router = new VueRouter({
                 {path: '', name: 'main', component: Main},
                 {path: 'start', name: 'start', component: Starter},
                 {path: 'intro', name: 'intro', component: Intro},
+                {path: 'video', name: 'video', component: VideoText},
                 {
                     path: 'game/:gameId', name: 'game', component: Game,
                 },

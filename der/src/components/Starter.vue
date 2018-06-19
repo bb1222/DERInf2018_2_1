@@ -69,16 +69,5 @@
 </script>
 
 <style>
-    .cursor-anim {
-        animation: anim-cursor 1.5s infinite;
-    }
 
-    @keyframes anim-cursor {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
-    }
 </style>
