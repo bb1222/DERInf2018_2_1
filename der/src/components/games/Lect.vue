@@ -68,14 +68,6 @@
                 position: 0
             }
         },
-        watch: {
-            position(val) {
-                console.log('watch position: ', val)
-                if (val === 1) {
-
-                }
-            }
-        },
         methods: {
             next(e) {
                 if (this.position === 1) {
