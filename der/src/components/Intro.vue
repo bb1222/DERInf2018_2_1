@@ -10,7 +10,7 @@
                                 flat class="mt-2 mb-3 pa-1 grey lighten-3"
                                 style="margin-right: 100px;height:120px">
                             <v-layout row justify-start align-center style="height:110px">
-                                <h2 class="pa-3" style="line-height: 1.2em; font-family: AppFont900;min-width: 360px;">
+                                <h2 class="pa-3" style="line-height: 1.2em; min-width: 360px;">
                                     <span v-if="chatItem.waiting"
                                           class="grey--text button-anim">{{items.printing}}</span>
                                     <span v-else>{{chatItem.text}}</span>
@@ -24,7 +24,7 @@
                                 style="margin-left: 100px;height:120px">
                             <v-layout row justify-start align-center style="height:110px">
                                 <img style="margin-top:-40px" src="assets/intro/p2.png" alt="">
-                                <h2 class="pa-3" style="line-height: 1.2em; font-family: AppFont900; min-width: 360px;">
+                                <h2 class="pa-3" style="line-height: 1.2em; min-width: 360px;">
                                     {{chatItem.text}}
                                 </h2>
                             </v-layout>
@@ -40,7 +40,7 @@
                 </div>
                 <v-card v-else flat>
                     <v-layout row justify-start align-center style="height:110px">
-                        <h2 class="pa-3" style="line-height: 1.2em; font-family: AppFont900; min-width: 482px;">
+                        <h2 class="pa-3" style="line-height: 1.2em; min-width: 482px;">
                             {{inputText}}
                         </h2>
                         <v-btn large @click="addChat()"
@@ -79,8 +79,8 @@
             clearInterval(this.interval)
         },
         computed: {
-            items(){
-              return this.$lang.value.intro
+            items() {
+                return this.$lang.value.intro
             },
             disableButton() {
                 return this.inputText === '' || this.disableSender
@@ -88,7 +88,7 @@
         },
         methods: {
             next() {
-                this.$router.push(this.items.route)
+                this.$router.push('game/0')
             },
             startInputText() {
                 if (this.position >= this.items.chat.length) {
@@ -116,12 +116,8 @@
                     self.chat.push(partner)
                     setTimeout(() => {
                         partner.waiting = false
-                    }, 2000)
-
-                    setTimeout(() => {
                         self.startInputText()
-                    }, 3000)
-
+                    }, 2000)
                 }, 1000)
                 self.inputText = ''
             }

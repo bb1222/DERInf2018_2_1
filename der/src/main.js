@@ -19,12 +19,11 @@ Vue.use(VueLocalization);
 
 import store from './store'
 import Lang from './Lang.vue'
-import Main from './components/Main'
 import Game from './components/Game.vue'
 import Result from './components/DialogResult.vue'
 import Starter from './components/Starter.vue'
 import Intro from './components/Intro.vue'
-import VideoText from './components/VideoText.vue'
+import Error from './components/Error.vue'
 
 require('vue2-animate/dist/vue2-animate.css')
 
@@ -38,18 +37,16 @@ VueApparate.init(Vue);
 const router = new VueRouter({
     routes: [
         {
-            path: '/:lang', component: Lang,
+            path: '/:lang',
+            component: Lang,
             children: [
-                {path: '', name: 'main', component: Main},
-                {path: 'start', name: 'start', component: Starter},
+                {path: '', name: 'start', component: Starter},
                 {path: 'intro', name: 'intro', component: Intro},
-                {path: 'video', name: 'video', component: VideoText},
-                {
-                    path: 'game/:gameId', name: 'game', component: Game,
-                },
-                {path: 'res', name: 'res', component: Result}
+                {path: 'game/:gameId', name: 'game', component: Game},
+                {path: 'res', name: 'res', component: Result},
+                {path: '*', name: 'error', component: Error}
             ]
-        },
+        }
     ]
 });
 

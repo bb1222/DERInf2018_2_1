@@ -1,27 +1,41 @@
 <template>
     <v-app>
         <div class="screen">
-            <div class="app-menu">
-                <v-btn :style="{visibility: $route.name!=='main' && $route.name!=='start' && $route.name!=='intro' ? 'visible': 'hidden'}"
-                       fab large dark color="grey darken-4"
-                       @click.native="$router.push({name: 'main'})">
-                    <v-icon color="grey darken-3">home</v-icon>
-                </v-btn>
+            <div class="app-menu" v-if="$route.name!='error'">
+                <v-menu offset-y open-on-hover>
+                    <v-btn fab large dark color="grey darken-4"
+                           slot="activator">
+                        <v-icon color="grey darken-2">menu</v-icon>
+                    </v-btn>
+                    <v-list dark>
+                        <v-list-tile v-for="(part,id) in $lang.value.parts" :key="id" @click="onClickPart(id)">
+                            <v-list-tile-title
+                            >
+                                <span class="text--lighten-1" style="font-size: 1.4em;"
+                                :class="[id===$route.params.gameId?'amber--text':'grey--text']">
+                                    {{ part.title }}
+                                </span>
+                            </v-list-tile-title>
+                        </v-list-tile>
+                    </v-list>
+                </v-menu>
+
                 <v-btn fab large dark color="grey darken-4"
                        @click.native="onSwitchSound()">
-                    <v-icon color="grey darken-3">{{soundEffects ? 'volume_up' : 'volume_off'}}</v-icon>
+                    <v-icon color="grey darken-2">{{soundEffects ? 'volume_up' : 'volume_off'}}</v-icon>
                 </v-btn>
-                <v-menu offset-y>
+                <v-menu offset-y open-on-hover>
                     <v-btn slot="activator"
                            fab large dark color="grey darken-4">
-                        <span class="grey--text text--darken-3"
-                              style="font-family: AppFont700 !important; font-size: 1.8em;"> {{currentLangName.title}}</span>
+                        <span class="grey--text text--darken-2"
+                              style="font-size: 1.8em;"> {{currentLangName.title}}</span>
                     </v-btn>
                     <v-list dark>
                         <v-list-tile v-for="(item,index) in languages" :key="index" @click="onClickLang(index)">
                             <v-list-tile-title
                                     style="height:50px; display: flex; justify-content: center; align-items: center">
-                                <span class="grey--text text--darken-1" style="font-size: 1.4em;">
+                                <span class="text--lighten-1" style="font-size: 1.4em;"
+                                      :class="[index===$route.params.lang?'amber--text':'grey--text']">
                                     {{ item.title }}
                                 </span>
                             </v-list-tile-title>
@@ -42,7 +56,6 @@
 <script>
     export default {
         data: () => ({
-            drawer: false,
             music: null,
             languages: {
                 kz: {
@@ -57,9 +70,23 @@
             },
             soundEffects: null,
             parts: null,
-            drawer: null,
-            musicsAllowPages: ['main', 'start', 'res']
+            musicsAllowPages: ['start', 'res']
         }),
+        beforeCreate() {
+            if (!this.$route.params.lang) {
+                this.$router.push('/ru');
+            }
+        },
+        mounted() {
+            this.music = new Audio();
+            this.music.volume = 0.6;
+            this.music.src = 'assets/sound/bg.mp3';
+            this.music.loop = true;
+            this.soundEffects = false// this.$store.state.soundEffects
+        },
+        beforeDestroy() {
+            if (this.music.played) this.music.pause()
+        },
         watch: {
             soundEffects: function (val) {
                 this.$store.commit('setSoundKey', val);
@@ -82,21 +109,6 @@
                 return this.languages[this.$lang.getLang()];
             },
         },
-        beforeCreate() {
-            if (!this.$route.params.lang) {
-                this.$router.push('/ru/start');
-            }
-        },
-        mounted() {
-            this.music = new Audio();
-            this.music.volume = 0.6;
-            this.music.src = 'assets/sound/bg.mp3';
-            this.music.loop = true;
-            this.soundEffects = false// this.$store.state.soundEffects
-        },
-        beforeDestroy() {
-            if (this.music.played) this.music.pause()
-        },
         methods: {
             onClickLang(lang) {
                 this.$router.push({params: {lang: lang}});
@@ -104,6 +116,9 @@
             onSwitchSound() {
                 this.soundEffects = !this.soundEffects;
             },
+            onClickPart(id) {
+                this.$router.push({name: 'game', params: {gameId: id}})
+            }
         }
     }
 </script>
@@ -114,7 +129,7 @@
     }
 
     #app {
-        font-family: AppFont500;
+        font-family: AppFont900;
         background-color: transparent !important;
     }
 
@@ -122,10 +137,6 @@
         position: relative;
         width: 1600px;
         height: 1200px;
-    }
-
-    .progress-linear {
-        border: 8px solid #424242;
     }
 
     .bg {
@@ -139,8 +150,8 @@
 
     .app-menu {
         position: absolute;
-        left: 90px;
-        top: 90px;
+        left: 40px;
+        top: 40px;
         z-index: 2;
     }
 
@@ -178,5 +189,9 @@
         to {
             opacity: 0;
         }
+    }
+
+    .btn__content span{
+        font-size: 22px;
     }
 </style>

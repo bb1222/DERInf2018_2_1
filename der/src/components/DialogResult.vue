@@ -1,15 +1,12 @@
 <template>
-    <v-layout row justify-center>
-        <!--<v-dialog v-model="dialog" persistent width="420px" transition="dialog-bottom-transition">-->
-            <!--<v-btn primary dark slot="activator">Open Dialog</v-btn>-->
-        <transition name="slide-y-reverse-transition">
-            <v-card v-if="dialog"  style="text-align: center;width: 420px; margin-top: 200px;">
-                <div class="pa-5">
-                    <!--<img src="public/images/heroHead.png" alt="">-->
-
-                    <h1 v-if="resWord" class="pt-2 mb-4 grey--text text--darken-2">{{resWord}}</h1>
-
-                    <h1 class="bolder pa-0 ma-0 text-xs-right"
+    <div class="bg" :style="{backgroundImage: `url('assets/intro/bg1_blur.jpg')`}">
+        <v-layout row justify-center>
+            <v-card v-if="dialog" v-apparate:bounceInUp="{delay:0}"
+                    style="text-align: center;width: 420px; margin-top: 300px;"
+                    class="shadow">
+                <div class="pa-5 mr-4 ml-4 mt-4 grey lighten-3">
+                    <h1 v-if="resWord" class="pt-2 mb-4">{{resWord}}</h1>
+                    <h1 class="bolder pa-0 ma-0 text-xs-right font700"
                         :class="[value<25? 'error--text' :(value<50?'primary--text':'success--text')]">
                         {{ value }}%</h1>
                     <v-progress-linear
@@ -20,15 +17,15 @@
                     >
                     </v-progress-linear>
                 </div>
-                <v-card class="grey darken-3 pa-3">
-                    <v-tooltip bottom>
-                        <v-btn icon large dark class="ml-4"
-                               slot="activator"
-                               @click.native="click('home')">
-                            <v-icon large>home</v-icon>
-                        </v-btn>
-                        <span>{{$lang.value.home}}</span>
-                    </v-tooltip>
+                <div class="pa-3 ma-2">
+                    <!--<v-tooltip bottom>-->
+                    <!--<v-btn icon large dark class="ml-4"-->
+                    <!--slot="activator"-->
+                    <!--@click.native="click('home')">-->
+                    <!--<v-icon large>home</v-icon>-->
+                    <!--</v-btn>-->
+                    <!--<span>{{$lang.value.home}}</span>-->
+                    <!--</v-tooltip>-->
                     <v-tooltip bottom>
                         <v-btn icon large dark class="ml-4"
                                slot="activator"
@@ -45,18 +42,10 @@
                         </v-btn>
                         <span>{{$lang.value.next}}</span>
                     </v-tooltip>
-                    <!--<v-layout column align-center>-->
-                    <!--<v-btn flat large primary @click.native="click('home')">{{$lang.value.home}}</v-btn>-->
-                    <!--<v-icon x-large>arrow_forward</v-icon>-->
-                    <!--</v-layout>-->
-                    <!--<v-btn flat large primary @click.native="click('repeat')">{{$lang.value.repeat}}</v-btn>-->
-                    <!--<v-btn flat large success @click.native="click('next')">{{$lang.value.next}}</v-btn>-->
-                </v-card>
-
+                </div>
             </v-card>
-        <!--</v-dialog>-->
-        </transition>
-    </v-layout>
+        </v-layout>
+    </div>
 </template>
 
 <script>
@@ -126,4 +115,13 @@
 <style lang="stylus">
     .progress-circular
         margin: 1rem
+
+    .shadow
+        background: #1f2f42 !important
+        /*-webkit-box-shadow 0 0 100px 10px #ffffff*/
+        box-shadow 0 10px 150px 10px #ffffff
+
+    .shadow .progress-linear
+        border: 8px solid #424242;
+
 </style>

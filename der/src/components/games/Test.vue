@@ -149,7 +149,6 @@
         max-width: 1200px;
         position: absolute;
         top: 220px;
-        font-family: AppFont900;
         display: flex;
         flex-direction: row;
         justify-content: space-between;

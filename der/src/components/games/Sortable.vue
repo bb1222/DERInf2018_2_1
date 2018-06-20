@@ -4,12 +4,12 @@
          ref="background"
          class="bg" style="position: absolute;left: 0;top: 0;">
         <div style="position: absolute; top:320px; left:250px; width:1100px;">
-            <h1 class="amber pa-3 font900 mb-3">
+            <h1 class="amber pa-3 mb-3">
                 {{items.task}}
             </h1>
             <v-layout row>
                 <v-flex xs3>
-                    <h1 style="height:100px; line-height: 1.3em;" class="font900 pa-3 mt-2 mb-2 blue-grey lighten-4"
+                    <h1 style="height:100px; line-height: 1.3em;" class="pa-3 mt-2 mb-2 blue-grey lighten-4"
                         v-for="element in items.sorts">
                         {{element}}
                     </h1>
@@ -19,7 +19,7 @@
                         <div style="height:100px" class="mt-2 mb-2 blue-grey lighten-4 pa-2"
                              v-for="(element,index) in values">
                             <v-card flat
-                                    class="font900 headline blue-grey lighten-3"
+                                    class="headline blue-grey lighten-3"
                                     style="box-sizing: border-box; padding:10px; min-height:80px;">
                                 {{element}}
                                 <!--:class="[element == items.values[index] && clicked?'success':'primary']"-->

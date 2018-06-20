@@ -6,14 +6,17 @@
 
 <script>
     // import Slider from './games/Slider.vue'
-    // import FillText from './games/FillText.vue'
+    import VideoText from './games/VideoText.vue'
     import Test from './games/Test.vue'
     import Sort from './games/Sortable.vue'
+    import Lect from './games/Lect.vue'
 
     export default {
         components: {
             Test,
-            Sort
+            VideoText,
+            Sort,
+            Lect
         },
         data() {
             return {}

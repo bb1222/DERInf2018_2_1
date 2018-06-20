@@ -13,14 +13,14 @@
 
 
         <div class="wolf-daemon" @click="onClickWolf"></div>
-        <h1 class="video-text grey lighten-4 pa-4 font900" style="line-height: 1.3em;">
+        <h1 class="video-text grey lighten-4 pa-4" style="line-height: 1.3em;">
             <span>{{text}}</span><span
                 :class="[textPrimary.length === text.length ? 'cursor-anim' : '']">_</span>
         </h1>
 
-        <v-btn large dark style="position: absolute;bottom: 120px; right:100px;"
+        <v-btn v-if="showNext" large dark style="position: absolute;bottom: 120px; right:100px;"
                @click="skip">
-            <span class="grey--text font900">{{$lang.value.skip}}</span>
+            <span class="grey--text">{{$lang.value.skip}}</span>
         </v-btn>
         <!--<video-->
         <!--:src="videoSource"-->
@@ -40,10 +40,12 @@
             return {
                 audioWolf: null,
                 interval: {},
-                text: ''
+                text: '',
+                showNext: false,
             }
         },
         mounted() {
+            this.showNext = this.$lang.value.parts.length - 1 > this.$route.params.gameId;
             let self = this
             self.text = ''
             this.audioWolf = new Audio('assets/video/Sound_01450.mp3')
@@ -70,7 +72,7 @@
         },
         methods: {
             skip() {
-                this.$router.push({name: 'main'})
+                this.$router.push({name: 'game', params: {gameId: +this.$route.params.gameId + 1}})
             },
             onClickWolf() {
                 this.audioWolf.currentTime = 0;
