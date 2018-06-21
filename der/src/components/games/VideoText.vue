@@ -1,15 +1,21 @@
 <template>
     <div class="bg" style="background-image: url('assets/video/bg1.jpg')">
 
-        <video
-                src="assets/video/videoplayback.mp4"
-                width="850px"
-                style="position: absolute;left: 400px;top: 250px;"
-                frameborder="0"
-                muted
-                autoplay
+        <video :src="items.video.src"
+               style="position: absolute;left: 380px;top: 220px; max-width:870px;"
+               frameborder="0"
+               muted
+               loop
+               autoplay
         >
         </video>
+
+
+        <!--<audio ref="">-->
+        <!--<source :src="items.audios[0]" type="audio/mpeg">-->
+        <!--Тег audio не поддерживается вашим браузером.-->
+        <!--<a :href="items.audios[0]">Скачайте музыку</a>.-->
+        <!--</audio>-->
 
 
         <div class="wolf-daemon" @click="onClickWolf"></div>
@@ -22,23 +28,16 @@
                @click="skip">
             <span class="grey--text">{{$lang.value.skip}}</span>
         </v-btn>
-        <!--<video-->
-        <!--:src="videoSource"-->
-        <!--width="850px"-->
-        <!--style="position: absolute;left: 400px;top: 250px;"-->
-        <!--frameborder="0"-->
-        <!--muted-->
-        <!--autoplay-->
-        <!--&gt;-->
-        <!--</video>-->
     </div>
 </template>
 
 <script>
     export default {
+        props: ['items'],
         data() {
             return {
                 audioWolf: null,
+                audio: null,
                 interval: {},
                 text: '',
                 showNext: false,
@@ -49,17 +48,23 @@
             let self = this
             self.text = ''
             this.audioWolf = new Audio('assets/video/Sound_01450.mp3')
-            setTimeout(() => {
-                let length = 0;
-                self.interval = setInterval(() => {
-                    if (length === self.textPrimary.length) {
-                        return;
-                    }
-                    self.text += self.textPrimary[length++]
-                }, 60)
-            }, 0)
+            let length = 0;
+            self.interval = setInterval(() => {
+                if (length === self.textPrimary.length) {
+                    return;
+                }
+                self.text += self.textPrimary[length++]
+            }, 60)
+
+            this.audio = new Audio()
+            this.audio.src = this.items.audios[0]
+            this.audio.onended = () => {
+                console.log('onended audio')
+            }
+            this.audio.play()
         },
         beforeDestroy() {
+            if(this.audio) this.audio.pause()
             clearInterval(this.interval)
         },
         computed: {

@@ -70,7 +70,13 @@ const DATAS = {
                 interactive: {
                     name: 'video-text',
                     items: {
-                        video: ''
+                        video: {
+                            src: 'assets/video/videoplayback.mp4',
+                        },
+                        audios:[
+                            'assets/audio/ru/1.mp3',
+                            'assets/audio/ru/2.mp3',
+                        ]
                     }
                 }
             },
