@@ -52,6 +52,7 @@
             values(val) {
                 if (this.clicked && this.compareArray(val, this.items.values)) {
                     this.$refs.background.style.backgroundImage = 'url("assets/sort/bg3.jpg")'
+                    this.$parent.$emit('game', true)
                     let gameOver = () => {
                         let res = 100 + 20 - this.attempt * 10;
                         res = (res > 100) ? 100 : res;

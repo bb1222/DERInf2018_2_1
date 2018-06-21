@@ -12,7 +12,7 @@
                             <v-list-tile-title
                             >
                                 <span class="text--lighten-1" style="font-size: 1.4em;"
-                                :class="[id===$route.params.gameId?'amber--text':'grey--text']">
+                                      :class="[id===$route.params.gameId?'amber--text':'grey--text']">
                                     {{ part.title }}
                                 </span>
                             </v-list-tile-title>
@@ -70,7 +70,7 @@
             },
             soundEffects: null,
             parts: null,
-            musicsAllowPages: ['start', 'res']
+            //  musicsAllowPages: ['start', 'res']
         }),
         beforeCreate() {
             if (!this.$route.params.lang) {
@@ -79,10 +79,10 @@
         },
         mounted() {
             this.music = new Audio();
-            this.music.volume = 0.6;
+            this.music.volume = 1;
             this.music.src = 'assets/sound/bg.mp3';
             this.music.loop = true;
-            this.soundEffects = false// this.$store.state.soundEffects
+            this.soundEffects = this.$store.state.soundEffects
         },
         beforeDestroy() {
             if (this.music.played) this.music.pause()
@@ -95,13 +95,13 @@
             },
             '$route'(to, from) {
 
-                if (this.musicsAllowPages.includes(to.name) && this.soundEffects) {
-                    this.music.play()
-                }
-
-                if (this.musicsAllowPages.includes(from.name)) {
-                    this.music.pause()
-                }
+                // if (this.musicsAllowPages.includes(to.name) && this.soundEffects) {
+                //     this.music.play()
+                // }
+                //
+                // if (this.musicsAllowPages.includes(from.name)) {
+                //     this.music.pause()
+                // }
             }
         },
         computed: {
@@ -191,7 +191,7 @@
         }
     }
 
-    .btn__content span{
+    .btn__content span {
         font-size: 22px;
     }
 </style>

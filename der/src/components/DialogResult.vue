@@ -74,6 +74,15 @@
                 }
                 this.value += 10
             }, 150);
+
+            if (this.$store.state.soundEffects) {
+                setTimeout(() => {
+                    let soundNotify = new Audio();
+                    soundNotify.volume = 1;
+                    soundNotify.src = 'assets/sound/notify.mp3';
+                    soundNotify.play();
+                }, 500)
+            }
         },
         computed: {
             resWord() {

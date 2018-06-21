@@ -12,9 +12,9 @@
         <img v-apparate:fadeInLeft="{delay:4000}" style="opacity:0; position: absolute; right:430px; top:280px;"
              src="assets/lect/1/b1-2.png" alt="">
         <!--TABLES-->
-        <img v-apparate:fadeInUp="{delay:0}" style="opacity: 0; position: absolute; right:100px; bottom:0;"
+        <img style="position: absolute; right:100px; bottom:0;"
              src="assets/lect/1/k1.png" alt="">
-        <img v-apparate:fadeInUp="{delay:500}" style="opacity: 0; position: absolute; left:100px; bottom:0;"
+        <img style="position: absolute; left:100px; bottom:0;"
              src="assets/lect/1/k2.png" alt="">
         <!--ITEMS-->
         <img v-apparate:bounceIn="{delay:1500}" style="opacity: 0; position: absolute; left:130px; bottom:520px;"

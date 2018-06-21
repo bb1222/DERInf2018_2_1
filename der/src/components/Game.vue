@@ -10,21 +10,25 @@
     import Test from './games/Test.vue'
     import Sort from './games/Sortable.vue'
     import Lect from './games/Lect.vue'
+    import Rebus from './games/Rebus.vue'
 
     export default {
         components: {
             Test,
             VideoText,
             Sort,
-            Lect
+            Lect,
+            Rebus
         },
         data() {
             return {}
         },
         created() {
             let soundCorrect = new Audio();
+            soundCorrect.volume = 1;
             soundCorrect.src = 'assets/sound/correct1.mp3';
             let soundWrong = new Audio();
+            soundWrong.volume = 1;
             soundWrong.src = 'assets/sound/error1.mp3';
 
             this.$on('game', (isCorrect) => {

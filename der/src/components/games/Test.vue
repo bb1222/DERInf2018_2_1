@@ -47,8 +47,6 @@
 </template>
 
 <script>
-    // import ImageZoomer from './../model/ImageZoomer.vue'
-
     export default {
         props: ['items'],
         data: () => ({
@@ -60,7 +58,7 @@
             clicked: null
         }),
         created() {
-            // this.$parent.shuffle(this.items.data);
+            this.$parent.shuffle(this.items.data);
         },
         mounted() {
             this.animateButtons = true;
@@ -104,9 +102,6 @@
             }
         },
         computed: {
-            fulled() {
-                return false // this.basket.length == this.item.variants[0].length
-            },
             item() {
                 return this.items.data[this.position];
             },
@@ -189,4 +184,5 @@
         font-size: 29px;
         justify-content: start;
     }
+
 </style>

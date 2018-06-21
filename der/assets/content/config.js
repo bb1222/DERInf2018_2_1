@@ -56,6 +56,16 @@ const DATAS = {
         },
         parts: [
             {
+                title: 'Ребус',
+                interactive: {
+                    name: 'rebus',
+                    items: {
+                        bg: 'assets/bg1.jpg',
+                        answer: 'operating system'
+                    }
+                }
+            },
+            {
                 title: 'Что такое операционная система?',
                 interactive: {
                     name: 'video-text',
@@ -78,6 +88,7 @@ const DATAS = {
                             },
                             {
                                 bg: 'assets/lect/2/bg1.jpg',
+                                points: ['Меню', 'Кнопки', 'Панель инструментов', 'Значки'],
                                 text: 'Второй задачей операционной системы является предоставление пользователю доступа к ресурсам компьютера'
                             }
                         ]
