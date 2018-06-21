@@ -1,7 +1,8 @@
 <template>
-    <div class="bg" :style="{backgroundImage: `url(${loaded ? 'assets/starter/bg1.jpg' : 'assets/starter/bg0.jpg'})`}">
+    <div class="bg"
+         :style="{backgroundImage: `url(${switchedOn ? 'assets/starter/bg1.jpg' : 'assets/starter/bg0.jpg'})`}">
 
-        <template v-if="loaded">
+        <template v-if="switchedOn">
             <label v-apparate:fadeIn="{delay:0}"
                    style="position: absolute;left: 460px;top: 400px;"
                    class="display-1 cyan--text"
@@ -10,9 +11,10 @@
                    style="position: absolute;left: 460px;top: 440px;"
                    class="headline">{{$lang.value.grade}}</label>
 
-            <label style="position: absolute;left: 460px;top: 520px; max-width:680px;"
+            <label style="position: absolute;left: 460px;top: 510px; max-width:680px;"
                    class="display-1">
-                <span>{{title}}</span><span
+                <span style="color:transparent;">__</span>
+                {{title}}<span
                     :class="[$lang.value.title.length === title.length ? 'cursor-anim' : '']">_</span>
             </label>
 
@@ -25,9 +27,7 @@
             </v-btn>
         </template>
         <div v-else>
-            <v-progress-linear
-                    style="position: absolute;left: 600px;top: 600px; width: 400px; height:15px;"
-                    indeterminate color="grey"></v-progress-linear>
+            <div id="window-button" @click="switchOn"></div>
         </div>
         <h2 class="grey--text text--darken-2"
             style="position: absolute;bottom: 30px;left: 0;width: 100%;text-align: center;">&copy;
@@ -40,32 +40,42 @@
     export default {
         data() {
             return {
-                loaded: false,
+                switchedOn: false,
                 interval: {},
                 title: ''
             }
-        },
-        mounted() {
-            let self = this
-            setTimeout(() => {
-                self.loaded = true;
-                let length = 0;
-                self.title = ''
-                self.interval = setInterval(() => {
-                    if (length === self.$lang.value.title.length) {
-                        return;
-                    }
-                    self.title += self.$lang.value.title[length++]
-                }, 60)
-            }, 2500)
         },
         beforeDestroy() {
             clearInterval(this.interval)
         },
         methods: {
+            switchOn() {
+                this.switchedOn = true;
+                let self = this
+                let length = 0;
+                self.title = ''
+                this.interval = setInterval(() => {
+                    if (length === self.$lang.value.title.length) {
+                        return;
+                    }
+                    self.title += self.$lang.value.title[length++]
+                }, 60)
+            },
             start() {
                 this.$router.push({name: 'intro'})
             }
         }
     }
 </script>
+
+<style>
+    #window-button {
+        background: transparent;
+        cursor: pointer;
+        position: absolute;
+        left: 390px;
+        top: 300px;
+        width: 800px;
+        height: 420px;
+    }
+</style>

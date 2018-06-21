@@ -96,6 +96,7 @@
     .wolf-daemon {
         background: transparent;
         width: 200px;
+        cursor: pointer;
         height: 220px;
         position: absolute;
         right: 50px;
