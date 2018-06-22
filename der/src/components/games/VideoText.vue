@@ -21,7 +21,7 @@
         <div class="wolf-daemon" @click="onClickWolf"></div>
         <h1 class="video-text grey lighten-4 pa-4" style="line-height: 1.3em;">
             <span>{{text}}</span><span
-                :class="[textPrimary.length === text.length ? 'cursor-anim' : '']">_</span>
+                :class="[items.text.length === text.length ? 'cursor-anim' : '']">_</span>
         </h1>
 
         <v-btn v-if="showNext" large dark style="position: absolute;bottom: 120px; right:100px;"
@@ -50,30 +50,27 @@
             this.audioWolf = new Audio('assets/video/Sound_01450.mp3')
             let length = 0;
             self.interval = setInterval(() => {
-                if (length === self.textPrimary.length) {
+                if (length === self.items.text.length) {
                     return;
                 }
-                self.text += self.textPrimary[length++]
+                self.text += self.items.text[length++]
             }, 60)
 
-            this.audio = new Audio()
-            this.audio.src = this.items.audios[0]
-            this.audio.onended = () => {
-                console.log('onended audio')
+            if (this.$store.state.soundEffects) {
+                this.audio = new Audio()
+                this.audio.src = this.items.audio
+                this.audio.onended = () => {
+                    // if (this.audio.src !== self.items.audio2) {
+                    this.audio.src = self.items.audio2
+                    this.audio.play()
+                    this.audio.onended = null;
+                }
+                this.audio.play()
             }
-            this.audio.play()
         },
         beforeDestroy() {
-            if(this.audio) this.audio.pause()
+            if (this.audio) this.audio.pause()
             clearInterval(this.interval)
-        },
-        computed: {
-            textPrimary() {
-                return 'Операционная система – обеспечивает совместное функционирование всех устройств компьютера и предоставляет пользователю доступ к его ресурсам с использованием графического интерфейса ОС.'
-            },
-            videoSource() {
-                return 'assets/video/videoplayback.mp4'
-            }
         },
         methods: {
             skip() {

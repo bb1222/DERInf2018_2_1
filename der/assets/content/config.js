@@ -73,10 +73,9 @@ const DATAS = {
                         video: {
                             src: 'assets/video/videoplayback.mp4',
                         },
-                        audios:[
-                            'assets/audio/ru/1.mp3',
-                            'assets/audio/ru/2.mp3',
-                        ]
+                        text: 'Операционная система – обеспечивает совместное функционирование всех устройств компьютера и предоставляет пользователю доступ к его ресурсам с использованием графического интерфейса ОС.',
+                        audio: 'assets/audio/ru/1.mp3',
+                        audio2: 'assets/audio/ru/2.mp3'
                     }
                 }
             },
