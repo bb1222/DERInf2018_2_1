@@ -27,14 +27,21 @@
             let soundCorrect = new Audio();
             soundCorrect.volume = 1;
             soundCorrect.src = 'assets/sound/correct1.mp3';
+            soundCorrect.onended = () => {
+                this.$store.commit('muteMusic', false)
+            }
             let soundWrong = new Audio();
             soundWrong.volume = 1;
             soundWrong.src = 'assets/sound/error1.mp3';
+            soundWrong.onended = () => {
+                this.$store.commit('muteMusic', false)
+            }
+
 
             this.$on('game', (isCorrect) => {
                 if (!this.$store.state.soundEffects) return;
-
-                console.log('isCorrect: ', isCorrect);
+                this.$store.commit('muteMusic', true)
+                // console.log('isCorrect: ', isCorrect);
                 if (isCorrect) {
                     soundCorrect.play();
                 } else {

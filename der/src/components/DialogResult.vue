@@ -80,7 +80,11 @@
                     let soundNotify = new Audio();
                     soundNotify.volume = 1;
                     soundNotify.src = 'assets/sound/notify.mp3';
+                    soundNotify.onended = () => {
+                        this.$store.commit('muteMusic', false)
+                    }
                     soundNotify.play();
+                    this.$store.commit('muteMusic', true)
                 }, 500)
             }
         },
