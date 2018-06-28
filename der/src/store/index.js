@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        RESULT: 'res2018',
+        RESULT: 'res2018_inf_q2_1',
+        muteMusic: null,
         soundEffects: localStorage.getItem("bgMusic") ? localStorage.getItem("bgMusic") == 'true' : true,
     },
     getters: {
@@ -23,6 +24,9 @@ const store = new Vuex.Store({
             state.soundEffects = val;
             localStorage.setItem("bgMusic", val);
             console.log("bgMusic: ", localStorage.getItem("bgMusic"));
+        },
+        muteMusic(state, val) {
+            state.muteMusic = val;
         }
     }
 });

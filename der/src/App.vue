@@ -70,14 +70,14 @@
             },
             soundEffects: null,
             parts: null,
-            //  musicsAllowPages: ['start', 'res']
+            // musicsAllowPages: ['start', 'res']
         }),
         beforeCreate() {
             if (!this.$route.params.lang) {
                 this.$router.push('/ru');
             }
         },
-        mounted() {
+        created() {
             this.music = new Audio();
             this.music.volume = 1;
             this.music.src = 'assets/sound/bg.mp3';
@@ -93,16 +93,20 @@
                 if (val == true) this.music.play();
                 else this.music.pause();
             },
-            '$route'(to, from) {
-
-                // if (this.musicsAllowPages.includes(to.name) && this.soundEffects) {
-                //     this.music.play()
-                // }
-                //
-                // if (this.musicsAllowPages.includes(from.name)) {
-                //     this.music.pause()
-                // }
+            '$store.state.muteMusic'(val) {
+                console.log('$store.state.muteMusic: ', val)
+                if (val) this.music.volume = 0
+                else this.music.volume = 1
             }
+            // '$route'(to, from) {
+            //     if (this.musicsAllowPages.includes(to.name) && this.soundEffects) {
+            //         this.music.play()
+            //     }
+            //
+            //     if (this.musicsAllowPages.includes(from.name)) {
+            //         this.music.pause()
+            //     }
+            // }
         },
         computed: {
             currentLangName() {
