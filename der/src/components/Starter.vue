@@ -1,37 +1,50 @@
 <template>
-    <div class="bg"
-         :style="{backgroundImage: `url(${switchedOn ? 'assets/starter/bg1.jpg' : 'assets/starter/bg0.jpg'})`}">
+    <div class="bg">
 
-        <template v-if="switchedOn">
-            <label v-apparate:fadeIn="{delay:0}"
-                   style="position: absolute;left: 460px;top: 400px;"
-                   class="display-1 cyan--text"
-                   v-html="$lang.value.subject"></label>
-            <label v-apparate:fadeIn="{delay:0}"
-                   style="position: absolute;left: 460px;top: 440px;"
-                   class="headline">{{$lang.value.grade}}</label>
+        <div id="card">
+            <div style="position: relative; width: 100%;height:100%; overflow: hidden;">
+                <div id="line-long" class="mblack-bg" v-apparate:fadeInDown="{delay:200}"></div>
+                <div id="line-short" class="mblack-bg" v-apparate:fadeInUp="{delay:200}"></div>
+                <template v-if="switchedOn">
+                    <p v-apparate:fadeInLeft="{delay:700}"
+                       style="font-size: 60px; opacity: 0"
+                       class="mblack-text ml-5"
+                       v-html="$lang.value.subject"></p>
 
-            <label style="position: absolute;left: 460px;top: 510px; max-width:680px;"
-                   class="display-1">
-                <span style="color:transparent;">__</span>
-                {{title}}<span
-                    :class="[$lang.value.title.length === title.length ? 'cursor-anim' : '']">_</span>
-            </label>
+                    <p style="font-size: 30px;" class="ml-5 mt-5">
+                        <!--<span style="color:transparent;">__</span>-->
+                        {{title}}<span
+                            :class="[$lang.value.title.length === title.length ? 'cursor-anim' : '']">_</span>
+                    </p>
 
-            <v-btn style="position: absolute;left: 1000px;top: 620px; " class="elevation-0"
-                   dark large color="cyan"
-                   v-apparate:fadeInUp="{delay:0}"
-                   v-show="$lang.value.title.length === title.length"
-                   @click="start">
-                <v-icon large>play_arrow</v-icon>
-            </v-btn>
-        </template>
-        <div v-else>
-            <div id="window-button" @click="switchOn"></div>
+                    <p v-apparate:fadeInLeft="{delay:1000}"
+                       style="font-size: 24px; position: absolute;bottom: 100px;opacity: 0" class="headline ml-5">
+                        <span style="font-size: 230px">{{gradeDigit}}</span>
+                        {{gradeText}}
+                    </p>
+
+                    <v-btn class="elevation-0 ma-0"
+                           dark large
+                           style="width: 100%;position: absolute;bottom: 0;left: 0; min-height: 65px;font-size: 24px; text-align: right; opacity: 0"
+                           v-apparate:fadeInLeft="{delay:0}"
+                           v-show="$lang.value.title.length === title.length"
+                           @click="start">
+                        <span style="width: 100%;">{{$lang.value.start}}</span>
+                        <!--<v-icon large>play_arrow</v-icon>-->
+                    </v-btn>
+                </template>
+                <div v-else>
+                    <div id="window-button" @click="switchOn"></div>
+                </div>
+
+            </div>
         </div>
-        <h2 class="grey--text text--darken-2"
+
+
+        <h3 class="grey--text"
             style="position: absolute;bottom: 30px;left: 0;width: 100%;text-align: center;">&copy;
-            {{$lang.value.copyright}}</h2>
+            {{$lang.value.copyright}}</h3>
+
 
     </div>
 </template>
@@ -47,6 +60,19 @@
         },
         beforeDestroy() {
             clearInterval(this.interval)
+        },
+        mounted() {
+            setTimeout(() => {
+                this.switchOn()
+            }, 500)
+        },
+        computed: {
+            gradeDigit() {
+                return this.$lang.value.grade.split(' ')[0] || this.$lang.value.grade.split('-')[0]
+            },
+            gradeText() {
+                return this.$lang.value.grade.split(' ')[1] || this.$lang.value.grade.split('-')[1]
+            }
         },
         methods: {
             switchOn() {
@@ -69,6 +95,14 @@
 </script>
 
 <style>
+    .mblack-text {
+        color: #0f1418 !important;
+    }
+
+    .mblack-bg {
+        background: #0f1418 !important;
+    }
+
     #window-button {
         background: transparent;
         cursor: pointer;
@@ -77,5 +111,31 @@
         top: 300px;
         width: 800px;
         height: 420px;
+    }
+
+    #line-long {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 8px;
+        height: 550px;
+        pointer-events: none;
+    }
+
+    #line-short {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 8px;
+        height: 65px;
+        pointer-events: none;
+    }
+
+    #card {
+        position: absolute;
+        bottom: 335px;
+        left: 540px;
+        width: 510px;
+        height: 675px;
     }
 </style>
