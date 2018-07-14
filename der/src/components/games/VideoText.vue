@@ -1,34 +1,25 @@
 <template>
-    <div class="bg" style="background-image: url('assets/video/bg1.jpg')">
+    <div class="bg">
+        <div class="mblack-bg" style="height: 810px;width: 1165px; position: relative;margin: 165px 0 0 220px;">
+            <video :src="items[position].video.src"
+                   style="position: absolute;max-width:1165px;"
+                   frameborder="0"
+                   muted
+                   loop
+                   autoplay
+            >
+            </video>
+            <h1 class="video-text pa-5" style="line-height: 1.15em;">
+                <span>{{text}}</span><span
+                    :class="[items[position].text.length === text.length ? 'cursor-anim' : '']">_</span>
+            </h1>
 
-        <video :src="items[position].video.src"
-               style="position: absolute;left: 375px;top: 220px; max-width:870px;"
-               frameborder="0"
-               muted
-               loop
-               autoplay
-        >
-        </video>
-
-        <div class="wolf-daemon" @click="onClickWolf"></div>
-        <h1 class="video-text grey lighten-4 pa-4" style="line-height: 1.15em;">
-            <span>{{text}}</span><span
-                :class="[items[position].text.length === text.length ? 'cursor-anim' : '']">_</span>
-        </h1>
-
-        <v-btn v-if="showSkip" large dark style="position: absolute; top: 1060px; left:1300px;"
-               @click="skip">
-            <span class="grey--text">{{$lang.value.skip}}</span>
-        </v-btn>
-        <v-btn v-else-if="showNext" large dark style="position: absolute; top: 1060px; left:1300px;"
-               @click="next">
-            <span class="grey--text">{{$lang.value.next}}</span>
-        </v-btn>
-        <v-btn v-if="showPrev" large dark style="position: absolute; top: 1060px; left:170px;"
-               @click.stop="prev"
-        >
-            <span class="grey--text">{{$lang.value.back}}</span>
-        </v-btn>
+            <div style="position: absolute;top: 105%;left: 0%;width: 100%; text-align: center;">
+                <m-btn v-if="showPrev" :text-left="true" :text="$lang.value.back" @click.native="prev"></m-btn>
+                <m-btn v-if="showSkip" :text="$lang.value.skip" @click.native="skip"></m-btn>
+                <m-btn v-else-if="showNext" :text="$lang.value.next" @click.native="next"></m-btn>
+           </div>
+        </div>
     </div>
 </template>
 
@@ -134,10 +125,11 @@
 <style>
     .video-text {
         position: absolute;
-        left: 50%;
-        bottom: 100px;
-        margin-left: -450px;
-        width: 900px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        background-color: #40739b;
         height: 200px;
     }
 

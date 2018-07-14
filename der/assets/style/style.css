@@ -306,6 +306,11 @@
     src: url('font/MuseoSansCyrl 900.otf');
 }
 
+@font-face {
+    font-family: AppFontIntroDigits;
+    src: url('font/IntroDigits.otf');
+}
+
 .font100 {
     font-family: AppFont100 !important;
 }
@@ -324,4 +329,8 @@
 
 .font900 {
     font-family: AppFont900 !important;
+}
+
+.font-intro-digits {
+    font-family: AppFontIntroDigits !important;
 }

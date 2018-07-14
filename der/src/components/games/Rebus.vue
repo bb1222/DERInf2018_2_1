@@ -1,6 +1,7 @@
 <template>
     <div :style="{backgroundImage: `url('${items.bg}')`}"
          class="bg" style="position: absolute;left: 0;top: 0;">
+        <img src="assets/intro/slovo.png" alt="" style="position: absolute;pointer-events: none; left: 250px; top: 240px;">
         <div style="position: relative;">
             <draggable class="drag-rebus" v-model="values" :options="{group:'drag'}"
                        style="position: absolute;left: 400px; top: 400px;"
@@ -24,12 +25,14 @@
                 </div>
             </draggable>
 
-            <div style="position: fixed; top: 720px; left:700px;">
-                <v-btn v-if="gameOver" large dark color="success" class="elevation-0 fadeInUp"
-                       @click="next">
-                    <span>{{$lang.value.next}}</span>
-                </v-btn>
-            </div>
+            <!--<div v-if="gameOver" style="position: fixed; top: 720px; left:700px;">-->
+                <!--<v-btn  large dark color="success" class="elevation-0 fadeInUp"-->
+                       <!--@click="next">-->
+                    <!--<span>{{$lang.value.next}}</span>-->
+                <!--</v-btn>-->
+            <!--</div>-->
+
+            <m-btn class="fadeInUp" v-if="gameOver" style="position: fixed; top: 1020px; left:550px;" :text="$lang.value.next" @click.native="next"></m-btn>
         </div>
     </div>
 </template>
@@ -99,6 +102,7 @@
         display: flex;
         flex-direction: row;
         cursor: pointer;
+        margin-left: 20px;
     }
 
     .pointer-none {
@@ -107,8 +111,8 @@
 
     .drag-elem {
         text-transform: uppercase;
-        font-size: 100px;
-        padding: 0 10px;
+        font-size: 120px;
+        padding: 0 5px;
         min-width: 70px;
         text-align: center;
     }

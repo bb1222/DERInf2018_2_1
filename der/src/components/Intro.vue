@@ -7,23 +7,23 @@
                     <template v-for="(chatItem,index) in chat">
                         <v-card v-if="chatItem.isPartner"
                                 :style="{opacity: chat.length-2 > index ? '0.3' : ''}"
-                                flat class="mt-2 mb-3 pa-1 grey lighten-3"
-                                style="margin-right: 100px;height:120px">
-                            <v-layout row justify-start align-center style="height:110px">
+                                class="mt-2 mb-3 pa-1 elevation-10"
+                                style="margin-right: 100px;height:100px;  background: #8ad8f1;">
+                            <v-layout row justify-start align-center style="height:90px">
                                 <h2 class="pa-3" style="line-height: 1.2em; min-width: 360px;">
                                     <span v-if="chatItem.waiting"
-                                          class="grey--text button-anim">{{items.printing}}</span>
+                                          class="button-anim">{{items.printing}}</span>
                                     <span v-else>{{chatItem.text}}</span>
                                 </h2>
-                                <img style="margin-top:-30px" src="assets/intro/p1.png" alt="">
+                                <!--<img style="margin-top:-30px" src="assets/intro/p1.png" alt="">-->
                             </v-layout>
                         </v-card>
                         <v-card v-else
                                 :style="{opacity: chat.length-2 > index ? '0.3' : ''}"
-                                flat class="mt-5 mb-5 pa-1 light-green accent-2"
-                                style="margin-left: 100px;height:120px">
-                            <v-layout row justify-start align-center style="height:110px">
-                                <img style="margin-top:-40px" src="assets/intro/p2.png" alt="">
+                                class="mt-5 mb-5 pa-1 elevation-10"
+                                style="margin-left: 100px;height:100px; background: #fecf6c;">
+                            <v-layout row justify-start align-center style="height:90px">
+                                <!--<img style="margin-top:-40px" src="assets/intro/p2.png" alt="">-->
                                 <h2 class="pa-3" style="line-height: 1.2em; min-width: 360px;">
                                     {{chatItem.text}}
                                 </h2>
@@ -31,28 +31,29 @@
                         </v-card>
                     </template>
                 </div>
-                <div v-if="finished"
-                     style="width: 100%; text-align: right;">
-                    <v-btn large @click="next"
-                           class="light-green accent-2 ma-0" style="height:110px; min-width:100px;">
-                        <v-icon large class="button-anim">play_arrow</v-icon>
-                    </v-btn>
-                </div>
-                <v-card v-else flat>
-                    <v-layout row justify-start align-center style="height:110px">
-                        <h2 class="pa-3" style="line-height: 1.2em; min-width: 482px;">
+                <!--<div v-if="finished"-->
+                     <!--style="width: 100%; text-align: right;">-->
+                    <!--<v-btn large @click="next"-->
+                           <!--class="light-green accent-2 ma-0" style="height:90px; min-width:100px;">-->
+                        <!--<v-icon large class="button-anim">play_arrow</v-icon>-->
+                    <!--</v-btn>-->
+                <!--</div>-->
+                <v-card v-if="!finished" flat>
+                    <v-layout row justify-start align-center style="height:90px">
+                        <h2 class="pa-3" style="line-height: 1.2em; min-width: 395px;">
                             {{inputText}}
                         </h2>
                         <v-btn large @click="addChat()"
                                :disabled="disableButton"
-                               class="light-green accent-2 ma-0" style="height:100%; min-width:100px;">
-                            <v-icon large>send</v-icon>
+                               class="ma-0" style="height:100%; min-width:85px;background: #fecf6c;">
+                            <v-icon>send</v-icon>
                         </v-btn>
                     </v-layout>
                 </v-card>
-
             </div>
+            <m-btn v-if="finished" :text="$lang.value.start"  @click.native="next" class="fadeIn mt-3 ml-2"></m-btn>
         </div>
+
     </div>
 </template>
 
@@ -140,18 +141,19 @@
     }
 
     .phone {
-        position: relative;
-        margin-left: 330px;
-        width: 927px;
-        height: 1176px;
+        position: absolute;
+        left: 535px;
+        top: 210px;
+        width: 535px;
+        height: 790px;
     }
 
     .phone-window {
         position: absolute;
-        left: 170px;
-        top: 168px;
-        width: 580px;
-        height: 740px;
+        left: 30px;
+        top: 0;
+        width: 480px;
+        height: 790px;
         overflow: hidden;
     }
 

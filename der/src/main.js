@@ -18,18 +18,20 @@ VueLocalization.requireAll(require.context('./lang', true, /\.js$/));
 Vue.use(VueLocalization);
 
 import store from './store'
-import Lang from './Lang.vue'
-import Game from './components/Game.vue'
-import Result from './components/DialogResult.vue'
-import Starter from './components/Starter.vue'
-import Intro from './components/Intro.vue'
-import Error from './components/Error.vue'
+import Lang from './Lang'
+import Game from './components/Game'
+import Result from './components/DialogResult'
+import Starter from './components/Starter'
+import Intro from './components/Intro'
+import Error from './components/Error'
 
 require('vue2-animate/dist/vue2-animate.css')
 
-import LoadingImage from './components/model/LoadingImage.vue'
-
+import LoadingImage from './components/model/LoadingImage'
 Vue.component('loading-image', LoadingImage);
+
+import Btn from './components/model/Btn'
+Vue.component('m-btn', Btn);
 
 require('vue-apparate');
 VueApparate.init(Vue);

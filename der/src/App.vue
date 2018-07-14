@@ -3,15 +3,17 @@
         <div class="screen">
             <div class="app-menu" v-if="$route.name!='error'">
                 <v-menu offset-y open-on-hover>
-                    <v-btn fab large dark color="grey darken-4"
-                           slot="activator">
-                        <v-icon color="grey darken-2">menu</v-icon>
-                    </v-btn>
+                    <div class="mb-5" slot="activator">
+                        <v-btn fab dark
+                               >
+                            <v-icon>menu</v-icon>
+                        </v-btn>
+                    </div>
                     <v-list dark>
                         <v-list-tile v-for="(part,id) in $lang.value.parts" :key="id" @click="onClickPart(id)">
                             <v-list-tile-title
                             >
-                                <span class="text--lighten-1" style="font-size: 1.4em;"
+                                <span class="text--lighten-3" style="font-size: 1.4em;"
                                       :class="[id===$route.params.gameId?'amber--text':'grey--text']">
                                     {{ part.title }}
                                 </span>
@@ -20,21 +22,25 @@
                     </v-list>
                 </v-menu>
 
-                <v-btn fab large dark color="grey darken-4"
-                       @click.native="onSwitchSound()">
-                    <v-icon color="grey darken-2">{{soundEffects ? 'volume_up' : 'volume_off'}}</v-icon>
-                </v-btn>
-                <v-menu offset-y open-on-hover>
-                    <v-btn slot="activator"
-                           fab large dark color="grey darken-4">
-                        <span class="grey--text text--darken-2"
-                              style="font-size: 1.8em;"> {{currentLangName.title}}</span>
+                <div class="mb-5">
+                    <v-btn fab dark
+                           @click.native="onSwitchSound()">
+                        <v-icon>{{soundEffects ? 'volume_up' : 'volume_off'}}</v-icon>
                     </v-btn>
+                </div>
+                <v-menu offset-y open-on-hover>
+                    <div slot="activator" class="mb-5">
+                        <v-btn fab
+
+                               dark>
+                            <span style="font-size: 1.5em;"> {{currentLangName.title}}</span>
+                        </v-btn>
+                    </div>
                     <v-list dark>
                         <v-list-tile v-for="(item,index) in languages" :key="index" @click="onClickLang(index)">
                             <v-list-tile-title
                                     style="height:50px; display: flex; justify-content: center; align-items: center">
-                                <span class="text--lighten-1" style="font-size: 1.4em;"
+                                <span class="text--lighten-3" style="font-size: 1.4em;"
                                       :class="[index===$route.params.lang?'amber--text':'grey--text']">
                                     {{ item.title }}
                                 </span>
@@ -157,6 +163,8 @@
         left: 40px;
         top: 40px;
         z-index: 2;
+        display: flex;
+        flex-direction: row;
     }
 
     .app-menu .btn:hover {
@@ -183,7 +191,7 @@
     }
 
     .cursor-anim {
-        animation: anim-cursor 1.5s infinite;
+        animation: anim-cursor 1s infinite;
     }
 
     @keyframes anim-cursor {
@@ -197,5 +205,13 @@
 
     .btn__content span {
         font-size: 22px;
+    }
+
+    .mblack-text {
+        color: #0f1418 !important;
+    }
+
+    .mblack-bg {
+        background: #0f1418 !important;
     }
 </style>

@@ -3,10 +3,10 @@
 
         <div id="card">
             <div style="position: relative; width: 100%;height:100%; overflow: hidden;">
-                <div id="line-long" class="mblack-bg" v-apparate:fadeInDown="{delay:200}"></div>
-                <div id="line-short" class="mblack-bg" v-apparate:fadeInUp="{delay:200}"></div>
+                <div id="line-long" class="mblack-bg" style="opacity: 0" v-apparate:fadeInDown="{delay:200}"></div>
+                <div id="line-short" class="mblack-bg" style="opacity: 0" v-apparate:fadeInUp="{delay:200}"></div>
                 <template v-if="switchedOn">
-                    <p v-apparate:fadeInLeft="{delay:700}"
+                    <p v-apparate:fadeInLeft="{delay:500}"
                        style="font-size: 60px; opacity: 0"
                        class="mblack-text ml-5"
                        v-html="$lang.value.subject"></p>
@@ -14,24 +14,20 @@
                     <p style="font-size: 30px;" class="ml-5 mt-5">
                         <!--<span style="color:transparent;">__</span>-->
                         {{title}}<span
+                            v-show="switchedOn"
                             :class="[$lang.value.title.length === title.length ? 'cursor-anim' : '']">_</span>
                     </p>
 
-                    <p v-apparate:fadeInLeft="{delay:1000}"
+                    <p v-apparate:fadeInLeft="{delay:800}"
                        style="font-size: 24px; position: absolute;bottom: 100px;opacity: 0" class="headline ml-5">
-                        <span style="font-size: 230px">{{gradeDigit}}</span>
+                        <span style="font-size: 230px; font-family: AppFontIntroDigits">{{gradeDigit}}</span>
                         {{gradeText}}
                     </p>
-
-                    <v-btn class="elevation-0 ma-0"
-                           dark large
-                           style="width: 100%;position: absolute;bottom: 0;left: 0; min-height: 65px;font-size: 24px; text-align: right; opacity: 0"
-                           v-apparate:fadeInLeft="{delay:0}"
+                    <m-btn :text="$lang.value.start"
+                           class="fadeInLeft"
                            v-show="$lang.value.title.length === title.length"
-                           @click="start">
-                        <span style="width: 100%;">{{$lang.value.start}}</span>
-                        <!--<v-icon large>play_arrow</v-icon>-->
-                    </v-btn>
+                           @click.native="start"
+                           style="position: absolute;bottom: 0;left: 0; opacity: 0;"></m-btn>
                 </template>
                 <div v-else>
                     <div id="window-button" @click="switchOn"></div>
@@ -39,13 +35,9 @@
 
             </div>
         </div>
-
-
         <h3 class="grey--text"
             style="position: absolute;bottom: 30px;left: 0;width: 100%;text-align: center;">&copy;
             {{$lang.value.copyright}}</h3>
-
-
     </div>
 </template>
 
@@ -78,14 +70,16 @@
             switchOn() {
                 this.switchedOn = true;
                 let self = this
-                let length = 0;
-                self.title = ''
-                this.interval = setInterval(() => {
-                    if (length === self.$lang.value.title.length) {
-                        return;
-                    }
-                    self.title += self.$lang.value.title[length++]
-                }, 60)
+                setTimeout(() => {
+                    let length = 0;
+                    self.title = ''
+                    this.interval = setInterval(() => {
+                        if (length === self.$lang.value.title.length) {
+                            return;
+                        }
+                        self.title += self.$lang.value.title[length++]
+                    }, 60)
+                }, 1000)
             },
             start() {
                 this.$router.push({name: 'intro'})
@@ -95,14 +89,6 @@
 </script>
 
 <style>
-    .mblack-text {
-        color: #0f1418 !important;
-    }
-
-    .mblack-bg {
-        background: #0f1418 !important;
-    }
-
     #window-button {
         background: transparent;
         cursor: pointer;
