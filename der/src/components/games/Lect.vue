@@ -1,29 +1,11 @@
 <template>
-    <div class="bg" :style="{backgroundImage: `url('${items.parts[position].bg}')`}">
-        <div v-if="position===0">
+    <div class="bg">
+        <div>
 
-            <Lect1></Lect1>
+            <Lect1 v-if="position===0"></Lect1>
+            <Lect2 v-else></Lect2>
 
-            <v-card class="grey lighten-3 pt-4 pr-4 pl-4 pb-0 elevation-8"
-                    v-apparate:fadeInUp="{delay:5000}"
-                    style="opacity: 0; position: absolute;left: 320px;bottom: 150px; width:880px;">
-                <p class="lect-title">
-                    {{items.title}}
-                    <br>
-                    {{items.subtitle}}
-                </p>
-                <p class="lect-text">
-                    {{items.parts[position].text}}
-                </p>
-            </v-card>
-
-        </div>
-        <div v-else>
-
-            <Lect2></Lect2>
-
-            <v-card class="grey lighten-3 pt-4 pr-4 pl-4 pb-0 elevation-8 fadeInRight"
-                    style="position: absolute;left: 320px;bottom: 80px; width:920px;">
+            <v-card class="fadeInUp text-container" style="background:#31a5e2; color:white;">
                 <p class="lect-title">
                     {{items.title}}
                     <br>
@@ -35,20 +17,11 @@
             </v-card>
         </div>
 
-        <div style="position: absolute;bottom: 140px; right:100px;">
-            <v-btn large dark
-                   class="fadeInUp"
-                   @click="next">
-                <span class="grey--text">{{$lang.value.skip}}</span>
-            </v-btn>
+        <div style="position: absolute; bottom: 100px; right:220px;">
+           <m-btn class="fadeInUp" :text="$lang.value.skip"  @click.native="next"></m-btn>
         </div>
-        <div style="position: absolute;bottom: 140px; left:100px;">
-            <v-btn v-if="position===1"
-                   class="fadeInUp"
-                   @click="position=0"
-                   large dark>
-                <span class="grey--text">{{$lang.value.back}}</span>
-            </v-btn>
+        <div style="position: absolute;bottom: 100px; left:220px;">
+            <m-btn v-if="position===1" class="fadeInUp" @click.native="position=0" :text="$lang.value.back" :text-left="true"></m-btn>
         </div>
     </div>
 </template>
@@ -89,5 +62,14 @@
     .lect-text {
         font-size: 26px;
         line-height: 1.2em;
+    }
+
+    .text-container {
+        padding: 35px;
+        width: 1165px;
+        height: 220px;
+        position: absolute;
+        left: 220px;
+        bottom: 210px;
     }
 </style>

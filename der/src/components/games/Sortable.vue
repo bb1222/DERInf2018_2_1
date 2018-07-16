@@ -1,26 +1,28 @@
 <template>
-    <!--<div :style="{backgroundImage: `url('${items.bg}')`}"-->
-    <div :style="{backgroundImage: `url('assets/sort/bg1.jpg')`}"
-         ref="background"
-         class="bg" style="position: absolute;left: 0;top: 0;">
+    <div class="bg" style="position: absolute;left: 0;top: 0;">
         <div style="position: absolute; top:320px; left:250px; width:1100px;">
-            <h1 class="amber pa-3 mb-3">
-                {{items.task}}
+            <h1 class="mblack-bg pa-3 mb-3">
+                <span style="color:white;">{{items.task}}</span>
             </h1>
             <v-layout row>
                 <v-flex xs3>
-                    <h1 style="height:100px; line-height: 1.3em;" class="pa-3 mt-2 mb-2 blue-grey lighten-4"
-                        v-for="element in items.sorts">
-                        {{element}}
-                    </h1>
+                    <div class="mb-2 mr-2"
+                         :class="[correct ? 'light-green lighten-2':'']"
+                         v-for="element in items.sorts">
+                        <h1 style="height:100px; line-height: 1.3em;" class="pa-3 pr-5"
+                            >
+                            {{element}}
+                        </h1>
+                    </div>
                 </v-flex>
                 <v-flex xs9>
                     <draggable v-model="values" :options="{group:'sort'}" @start="drag=true" @end="drag=false">
-                        <div style="height:100px" class="mt-2 mb-2 blue-grey lighten-4 pa-2"
+                        <div style="height:100px" class="mb-2"
                              v-for="(element,index) in values">
                             <v-card flat
-                                    class="headline blue-grey lighten-3"
-                                    style="box-sizing: border-box; padding:10px; min-height:80px;">
+                                    :class="[correct ? 'light-green fadeIn':'grey lighten-3']"
+                                    class="headline pa-4"
+                                    style="padding:0; min-height:100px;">
                                 {{element}}
                                 <!--:class="[element == items.values[index] && clicked?'success':'primary']"-->
                             </v-card>
@@ -42,6 +44,7 @@
         },
         data() {
             return {
+                correct: false,
                 values: [],
                 mount: false,
                 clicked: false,
@@ -51,8 +54,8 @@
         watch: {
             values(val) {
                 if (this.clicked && this.compareArray(val, this.items.values)) {
-                    this.$refs.background.style.backgroundImage = 'url("assets/sort/bg3.jpg")'
                     this.$parent.$emit('game', true)
+                    this.correct = true;
                     let gameOver = () => {
                         let res = 100 + 20 - this.attempt * 10;
                         res = (res > 100) ? 100 : res;

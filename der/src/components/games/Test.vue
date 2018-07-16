@@ -1,10 +1,9 @@
 <template>
-    <div :style="{backgroundImage: `url('${items.bg}')`}"
-         class="bg" style="position: absolute;left: 0;top: 0;">
+    <div class="bg" style="position: absolute;left: 0;top: 0;">
         <div style="position: relative;">
-            <p id="counter">{{position + 1}}<sup>
-                <small>/{{items.count}}</small>
-            </sup></p>
+            <!--<p id="counter">{{position + 1}}<sup>-->
+                <!--<small>/{{items.count}}</small>-->
+            <!--</sup></p>-->
             <div id="test">
                 <transition enter-active-class="fadeInDown"
                             leave-active-class="fadeOutUp">
@@ -32,15 +31,19 @@
                                    :style="{pointerEvents: clicked ? 'none': ''}"
                                    :class="[getColorButton(variant), `btn-${item.type}`]"
                             >
-                                <loading-image v-if="item.type==='image'" :src="variant.value"
-                                               style="width: 100%; position: absolute;"></loading-image>
-                                <span v-else>{{symbols[index]}}) {{variant.value}}</span>
+                                <span style="font-size: 28px; line-height: 1.3em;">{{symbols[index]}}) {{variant.value}}</span>
 
                             </v-btn>
                         </transition>
                     </template>
                 </div>
 
+                <v-layout row justify-center align-center class="lines">
+                    <v-flex v-for="(item, index) in items.count" :key="index">
+                        <div class="line fadeIn"
+                             :class="[position>=index?'mblack-bg':'grey']"></div>
+                    </v-flex>
+                </v-layout>
             </div>
         </div>
     </div>
@@ -144,14 +147,12 @@
         max-width: 1200px;
         position: absolute;
         top: 220px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        width: 100%;
     }
 
     #question {
-        max-width: 1200px;
+        padding: 10px;
+        font-size: 36px;
     }
 
     #text-container {
@@ -168,10 +169,8 @@
     }
 
     .btn-text {
-        font-family: AppFont700;
         width: 100%;
         height: 100px;
-        font-size: 29px;
         margin: 0;
         text-transform: none;
         text-align: left;
@@ -181,8 +180,18 @@
         white-space: inherit !important;
         line-height: 1.2em;
         flex: auto;
-        font-size: 29px;
         justify-content: start;
+    }
+
+    .lines {
+        position: absolute;
+        top: 840px;
+    }
+
+    .line{
+        width: 32px;
+        height: 3px;
+        margin: 0 5px;
     }
 
 </style>

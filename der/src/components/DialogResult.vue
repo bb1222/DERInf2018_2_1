@@ -1,5 +1,5 @@
 <template>
-    <div class="bg" :style="{backgroundImage: `url('assets/intro/bg1_blur.jpg')`}">
+    <div class="bg">
         <v-layout row justify-center>
             <v-card v-if="dialog" v-apparate:bounceInUp="{delay:0}"
                     style="text-align: center;width: 420px; margin-top: 300px;"
@@ -130,11 +130,11 @@
         margin: 1rem
 
     .shadow
-        background: #1f2f42 !important
-        /*-webkit-box-shadow 0 0 100px 10px #ffffff*/
+        background: #0f1418 !important
+        -webkit-box-shadow 0 10px 150px 10px #ffffff
         box-shadow 0 10px 150px 10px #ffffff
 
     .shadow .progress-linear
-        border: 8px solid #424242;
+        border: 8px solid #0f1418;
 
 </style>

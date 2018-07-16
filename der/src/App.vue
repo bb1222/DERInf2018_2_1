@@ -150,6 +150,7 @@
     }
 
     .bg {
+        /*background: #bbb;*/
         position: relative;
         width: 1600px;
         height: 1200px;

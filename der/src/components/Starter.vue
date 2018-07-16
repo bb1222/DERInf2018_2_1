@@ -1,7 +1,7 @@
 <template>
     <div class="bg">
 
-        <div id="card">
+        <div id="card" class="white">
             <div style="position: relative; width: 100%;height:100%; overflow: hidden;">
                 <div id="line-long" class="mblack-bg" style="opacity: 0" v-apparate:fadeInDown="{delay:200}"></div>
                 <div id="line-short" class="mblack-bg" style="opacity: 0" v-apparate:fadeInUp="{delay:200}"></div>
