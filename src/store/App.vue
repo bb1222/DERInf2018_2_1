@@ -107,7 +107,7 @@
         },
         methods: {
             onClickLang(lang) {
-                this.$router.push({params: {lang: lang}});
+                this.$router.go({params: {lang: lang}});
             },
             onSwitchSound() {
                 this.soundEffects = !this.soundEffects;
