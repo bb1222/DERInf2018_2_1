@@ -11904,7 +11904,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(2);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ce4a07ba_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_36ab199e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(15);
 function injectStyle (ssrContext) {
   __webpack_require__(10)
 }
@@ -11924,7 +11924,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ce4a07ba_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_36ab199e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -11945,7 +11945,7 @@ var content = __webpack_require__(11);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(13)("2c9ad7fd", content, true, {});
+var update = __webpack_require__(13)("fa48d08c", content, true, {});
 
 /***/ }),
 /* 11 */
@@ -11956,7 +11956,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "body{background:#fff}.fg-resizable{position:fixed;z-index:2;background-size:1600px auto;top:50%;left:50%;margin-top:-600px;margin-left:-800px;overflow:hidden}#frame,.fg-resizable{width:1600px;height:1200px;background-color:transparent}#loader{position:fixed;width:280px;height:400px;margin-top:-200px;margin-left:-140px;left:50%;top:50%}", ""]);
+exports.push([module.i, ".fg-resizable{position:fixed;z-index:2;background-size:1600px auto;top:50%;left:50%;margin-top:-600px;margin-left:-800px;overflow:hidden}#frame,.fg-resizable{width:1600px;height:1200px;background-color:transparent}#loader{position:fixed;width:280px;height:400px;margin-top:-200px;margin-left:-140px;left:50%;top:50%}.particles{position:absolute;width:100%;height:100%;z-index:2}", ""]);
 
 // exports
 
@@ -12309,7 +12309,7 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('vue-particles',{staticClass:"particles",attrs:{"color":"#000","particleOpacity":0.7,"particlesNumber":80,"shapeType":"circle","particleSize":2,"linesColor":"#000","linesWidth":1,"lineLinked":false,"lineOpacity":0.7,"linesDistance":150,"moveSpeed":1,"hoverEffect":true,"hoverMode":"grab","clickEffect":true,"clickMode":"push"}}),_vm._v(" "),_vm._m(0)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('vue-particles',{staticClass:"particles",attrs:{"color":"#fff","particleOpacity":0.7,"particlesNumber":80,"shapeType":"circle","particleSize":3,"linesColor":"#fff","linesWidth":1,"lineLinked":false,"lineOpacity":0.7,"linesDistance":150,"moveSpeed":1,"hoverEffect":true,"hoverMode":"grab","clickEffect":true,"clickMode":"push"}}),_vm._v(" "),_c('div',{attrs:{"id":"background"}}),_vm._v(" "),_vm._m(0)],1)}
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fg-resizable"},[_c('iframe',{attrs:{"src":"der/index.html","frameborder":"0","id":"frame","seamless":"seamless","scrolling":"no","allowtransparency":"true"}})])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);

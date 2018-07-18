@@ -24,14 +24,8 @@
                     {{element}}
                 </div>
             </draggable>
-
-            <!--<div v-if="gameOver" style="position: fixed; top: 720px; left:700px;">-->
-                <!--<v-btn  large dark color="success" class="elevation-0 fadeInUp"-->
-                       <!--@click="next">-->
-                    <!--<span>{{$lang.value.next}}</span>-->
-                <!--</v-btn>-->
-            <!--</div>-->
-
+            <h2 style="position: absolute;left: 300px;top: 900px;width: 1000px;text-align: center;" class="grey--text"
+                v-html="items.task"></h2>
             <m-btn class="fadeInUp" v-if="gameOver" style="position: fixed; top: 1020px; left:550px;" :text="$lang.value.next" @click.native="next"></m-btn>
         </div>
     </div>
@@ -41,16 +35,12 @@
     import draggable from 'vuedraggable'
 
     export default {
-        // props: ['items'],
+        props: ['items'],
         components: {
             draggable
         },
         data: () => ({
             drag: false,
-            items: {
-                bg: 'assets/bg1.jpg',
-                answer: ['operating', 'system']
-            },
             trueAnswer: [],
             trueAnswer2: [],
             gameOver: false,

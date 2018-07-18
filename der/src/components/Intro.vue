@@ -105,7 +105,7 @@
                         return;
                     }
                     this.inputText += text[length++]
-                }, 50)
+                }, 40)
             },
             addChat() {
                 let self = this

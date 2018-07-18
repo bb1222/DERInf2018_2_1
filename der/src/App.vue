@@ -88,13 +88,15 @@
             this.music.volume = 1;
             this.music.src = 'assets/sound/bg.mp3';
             this.music.loop = true;
+        },
+        mounted(){
             this.soundEffects = this.$store.state.soundEffects
         },
         beforeDestroy() {
             if (this.music.played) this.music.pause()
         },
         watch: {
-            soundEffects: function (val) {
+            soundEffects (val) {
                 this.$store.commit('setSoundKey', val);
                 if (val == true) this.music.play();
                 else this.music.pause();

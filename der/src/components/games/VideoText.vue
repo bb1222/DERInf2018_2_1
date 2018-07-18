@@ -87,7 +87,7 @@
                         return;
                     }
                     self.text += self.items[self.position].text[length++]
-                }, 60)
+                }, 40)
 
                 if (self.$store.state.soundEffects) {
                     self.audio = new Audio()

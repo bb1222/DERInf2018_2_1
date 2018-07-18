@@ -78,7 +78,7 @@
                             return;
                         }
                         self.title += self.$lang.value.title[length++]
-                    }, 60)
+                    }, 40)
                 }, 1000)
             },
             start() {
