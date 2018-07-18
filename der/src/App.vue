@@ -5,7 +5,7 @@
                 <v-menu offset-y open-on-hover>
                     <div class="mb-5" slot="activator">
                         <v-btn fab dark
-                               >
+                        >
                             <v-icon>menu</v-icon>
                         </v-btn>
                     </div>
@@ -50,6 +50,11 @@
                 </v-menu>
             </div>
 
+            <!--<audio id="audioMusic" loop="loop" autoplay>-->
+                <!--&lt;!&ndash;<source src="assets/behind_you.ogg" type="audio/ogg" />&ndash;&gt;-->
+                <!--<source src="assets/sound/bg.mp3" type="audio/mp3" />-->
+            <!--</audio>-->
+
             <v-content>
                 <transition name="fade">
                     <router-view/>
@@ -83,20 +88,30 @@
                 this.$router.push('/ru');
             }
         },
-        created() {
+        mounted () {
             this.music = new Audio();
-            this.music.volume = 1;
+            this.music.volume = 0.6;
             this.music.src = 'assets/sound/bg.mp3';
             this.music.loop = true;
-        },
-        mounted(){
             this.soundEffects = this.$store.state.soundEffects
+            if (this.soundEffects) {
+                let promise = this.music.play()
+                if (promise !== undefined) {
+                    promise.then(_ => {
+                        console.log('Autoplay started!')
+                    }).catch(error => {
+                        console.log('Autoplay was prevented.')
+                        //this.music.play()
+                        this.soundEffects = false
+                    });
+                }
+            }
         },
         beforeDestroy() {
             if (this.music.played) this.music.pause()
         },
         watch: {
-            soundEffects (val) {
+            soundEffects: function (val) {
                 this.$store.commit('setSoundKey', val);
                 if (val == true) this.music.play();
                 else this.music.pause();
